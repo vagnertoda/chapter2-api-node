@@ -1,0 +1,6 @@
+
+class CreateCategoryService {
+
+}
+
+export { CreateCategoryService }
