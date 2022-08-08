@@ -1,6 +1,0 @@
-
-class CreateCategoryService {
-
-}
-
-export { CreateCategoryService }
