@@ -7,7 +7,7 @@ const specificationsRouter = Router();
 
 const specificationsRepository = new SpecificationsRepository();
 
-specificationsRouter.post("/specification", (request, response) => {
+specificationsRouter.post("/", (request, response) => {
     const { name, description } = request.body;
 
     const createSpecificationService = new CreateSpecificationService(specificationsRepository);
@@ -17,7 +17,7 @@ specificationsRouter.post("/specification", (request, response) => {
     return response.status(201).send();
 });
 
-specificationsRouter.get("/specification", (request, response) => {
+specificationsRouter.get("/", (request, response) => {
     const all = specificationsRepository.list();
     return response.json({ all });
 });

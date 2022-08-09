@@ -9,7 +9,7 @@ const categoriesRoutes = Router();
 
 const categoriesRepository = new CategoriesRepository();
 
-categoriesRoutes.post("/categories", (request, response) =>{
+categoriesRoutes.post("/", (request, response) =>{
     //requesitando os atributos do body passado em json
     const { name, description } = request.body;
     
@@ -21,7 +21,7 @@ categoriesRoutes.post("/categories", (request, response) =>{
     return response.status(201).send();
 });
 
-categoriesRoutes.get("/categories", (request, response) =>{
+categoriesRoutes.get("/", (request, response) =>{
     
     const all = categoriesRepository.list();
 
