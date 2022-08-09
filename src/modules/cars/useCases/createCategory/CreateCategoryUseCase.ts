@@ -1,4 +1,4 @@
-import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
     name: string;
@@ -6,7 +6,7 @@ interface IRequest {
 }
 
 //usando os principios de SOLID SRP, DIP e LSP(Liskow)
-class CreateCategoryService {
+class CreateCategoryUseCase {
     //usando um hack do java script criando um construtor com tipagem
     constructor(private categoriesRepository: ICategoriesRepository){}
 
@@ -21,4 +21,4 @@ class CreateCategoryService {
     }
 }
 
-export { CreateCategoryService }
+export { CreateCategoryUseCase }
