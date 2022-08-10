@@ -1,15 +1,26 @@
-import { Specification } from "../model/Specification";
-import { ICreateSpecificationDTO, ISpecificationsRepository } from "./ISpecificationsRepository";
+import { Specification } from "../../model/Specification";
+import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationsRepository";
 
 
 class SpecificationsRepository implements ISpecificationsRepository {
     //criando a tabela fake
     private specifications: Specification[];
 
+    //singleton
+    private static INSTANCE: SpecificationsRepository;
+
     //iniciando o array da tabela fake
     constructor(){
         this.specifications = [];
     }   
+
+    //singleton
+    public static getInstance(): SpecificationsRepository{
+        if(!SpecificationsRepository.INSTANCE){
+            SpecificationsRepository.INSTANCE = new SpecificationsRepository();
+        }
+        return SpecificationsRepository.INSTANCE;
+    }
     
     create({ description, name }: ICreateSpecificationDTO): void {
         const specification = new Specification();
