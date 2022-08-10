@@ -7,6 +7,10 @@ class ImportCategoryController {
 
     handle(request: Request, response: Response): Response {
         const { file } = request;
+
+        if(!file){
+            return response.json({ error: "File is requerid" });
+        }
     
         this.importCategoryUseCase.execute(file);
 
