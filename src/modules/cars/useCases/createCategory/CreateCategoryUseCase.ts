@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
@@ -6,12 +8,15 @@ interface IRequest {
 }
 
 //usando os principios de SOLID SRP, DIP e LSP(Liskow)
+@injectable()
 class CreateCategoryUseCase {
     //usando um hack do java script criando um construtor com tipagem
-    constructor(private categoriesRepository: ICategoriesRepository){}
+    constructor(
+        @inject("CategoriesRepository")
+        private categoriesRepository: ICategoriesRepository){}
 
-    execute({ description, name}: IRequest): void {
-        const categoryAlreadyExists = this.categoriesRepository.findByName(name);
+    async execute({ description, name}: IRequest): Promise<void> {
+        const categoryAlreadyExists = await this.categoriesRepository.findByName(name);
 
         if(categoryAlreadyExists){
             throw new Error("Category already exists!");

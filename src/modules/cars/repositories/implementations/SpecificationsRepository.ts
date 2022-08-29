@@ -1,48 +1,37 @@
-import { Specification } from "../../model/Specification";
+import { getRepository, Repository } from 'typeorm';
+import { Specification } from "../../entities/Specification";
 import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationsRepository";
 
 
 class SpecificationsRepository implements ISpecificationsRepository {
-    //criando a tabela fake
-    private specifications: Specification[];
-
-    //singleton
-    private static INSTANCE: SpecificationsRepository;
-
-    //iniciando o array da tabela fake
-    constructor(){
-        this.specifications = [];
-    }   
-
-    //singleton
-    public static getInstance(): SpecificationsRepository{
-        if(!SpecificationsRepository.INSTANCE){
-            SpecificationsRepository.INSTANCE = new SpecificationsRepository();
-        }
-        return SpecificationsRepository.INSTANCE;
-    }
     
-    create({ description, name }: ICreateSpecificationDTO): void {
-        const specification = new Specification();
+    private repository: Repository<Specification>;
+    
+    constructor(){
+        this.repository = getRepository(Specification);
+    }       
+    
+    async create({ description, name }: ICreateSpecificationDTO): Promise<void> {
+        const specification = this.repository.create({
+           name,
+           description, 
+        });       
 
-        Object.assign(specification, {
-            name,
-            description,
-            created_at: new Date(),
-        });
-
-        this.specifications.push(specification);
+        await this.repository.save(specification);
     }
 
-    findById(name: string): Specification {
-        const specification = this.specifications.find((specification) => specification.name === name);
+    async list(): Promise<Specification[]> {
+        const specifications =  await this.repository.find();
+        return specifications;
+    }
+
+    async findById(name: string): Promise<Specification> {
+        const specification = await this.repository.findOne({ name });
         return specification;
     }
 
-    list(): Specification[] {
-        return this.specifications;
-    }
-
+        
+    
 }
 
 export { SpecificationsRepository }
