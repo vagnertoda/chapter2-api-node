@@ -5,9 +5,9 @@
     "username": "postgres",
     "password": "kiradog2688",
     "database": "aula-node",
-    "migrations": ["./src/database/migrations/*.ts"],
+    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
     "cli": {
-        "migrationsDir": "./src/database/migrations"
+        "migrationsDir": "./src/shared/infra/typeorm/migrations"
     },
     "entities": ["./src/modules/**/entities/*.ts"]
 }

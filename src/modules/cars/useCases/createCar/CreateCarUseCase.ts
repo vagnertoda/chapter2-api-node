@@ -1,0 +1,8 @@
+
+
+
+class CreateCarUseCase {
+
+}
+
+export { CreateCarUseCase }

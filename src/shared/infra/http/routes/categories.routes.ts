@@ -3,9 +3,9 @@ import { Router } from "express";
 import multer from "multer";
 
 //repositorio
-import { CreateCategoryController } from "../modules/cars/useCases/createCategory/CreateCategoryController";
-import { ListCategoriesController } from "../modules/cars/useCases/listCategories/ListCategoriesController";
-import { ImportCategoryController } from "../modules/cars/useCases/importCategory/ImportCategoryController";
+import { CreateCategoryController } from "@modules/cars/useCases/createCategory/CreateCategoryController";
+import { ListCategoriesController } from "@modules/cars/useCases/listCategories/ListCategoriesController";
+import { ImportCategoryController } from "@modules/cars/useCases/importCategory/ImportCategoryController";
 
 //passando o metodos de rota para categoriesRoutes
 const categoriesRoutes = Router();
