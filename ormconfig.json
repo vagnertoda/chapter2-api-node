@@ -6,8 +6,8 @@
     "password": "kiradog2688",
     "database": "aula-node",
     "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+    "entities": ["./src/modules/**/entities/*.ts"],
     "cli": {
         "migrationsDir": "./src/shared/infra/typeorm/migrations"
-    },
-    "entities": ["./src/modules/**/entities/*.ts"]
+    }    
 }
