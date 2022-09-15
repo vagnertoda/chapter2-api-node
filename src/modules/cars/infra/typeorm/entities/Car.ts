@@ -1,5 +1,6 @@
+import { Specification } from '@modules/cars/infra/typeorm/entities/Specification';
 import { v4 as uuidV4} from "uuid";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 
 import { Category } from '@modules/cars/infra/typeorm/entities/Category';
 
@@ -19,7 +20,7 @@ class Car {
     daily_rate: number;
 
     @Column()
-    avaliable: boolean;
+    available: boolean;
 
     @Column()
     license_plate: string;
@@ -36,6 +37,13 @@ class Car {
 
     @Column()
     category_id: string;
+
+    @ManyToMany(() => Specification)
+    @JoinTable({
+        name: "specifications_cars",
+        joinColumns: [{ name: "car_id" }],
+        inverseJoinColumns: [{ name : "specification_id"}],
+    })
     
     @CreateDateColumn()
     created_at: Date;
@@ -43,7 +51,7 @@ class Car {
     constructor(){
         if(!this.id){
             this.id = uuidV4(); 
-            this.avaliable = true; 
+            this.available = true; 
         }
     }
 }
