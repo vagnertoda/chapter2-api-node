@@ -12,7 +12,8 @@ class CreateCarController {
             license_plate, 
             fine_amount, 
             brand, 
-            category_id, } = request.body;
+            category_id, 
+        } = request.body;
 
         const createCarUseCase = container.resolve(CreateCarUseCase);
 
