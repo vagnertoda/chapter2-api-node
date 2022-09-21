@@ -1,7 +1,7 @@
 {
     "type": "postgres",
-    "host": "localhost",
     "port": 5432,
+    "host": "localhost",    
     "username": "postgres",
     "password": "kiradog2688",
     "database": "aula-node",

@@ -31,7 +31,7 @@ export class CreateCarImages1663585863531 implements MigrationInterface {
                         name: "FKCarImage",
                         referencedTableName: "cars",
                         referencedColumnNames: ["id"],
-                        columnNames: ["cars_id"],
+                        columnNames: ["car_id"],
                         onDelete: "SET NULL",
                         onUpdate: "SET NULL",
                     },
