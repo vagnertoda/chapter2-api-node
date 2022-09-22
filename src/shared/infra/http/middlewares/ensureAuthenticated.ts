@@ -15,7 +15,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
         throw new AppError("Token missing", 401);
     }
 
-    const[, token] = authHeader.split(" ");
+    const[, token] = authHeader.split(" "); //vai dividir o array da seguinte forma: [0] => bearer e [1] => 1516151650wdffwqfqw24. Dessa forma o [, token] ele vai pegar o segundo com a variavel token.
 
     try{
         const { sub: user_id } = verify(token, "8ac01dc0dca18170e4c52b19fa978248") as IPayload;
